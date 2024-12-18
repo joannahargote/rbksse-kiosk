@@ -25,6 +25,7 @@ public class _loginAs_popup extends javax.swing.JFrame {
     String selectedProgram="All", selectedYear="All", selectedBlock="All";
     
     public _loginAs_popup() {
+//        super(parent, "Login As", true);
         initComponents();
         
         setupTable();
@@ -259,14 +260,6 @@ public class _loginAs_popup extends javax.swing.JFrame {
         String firstName = tableModel.getValueAt(selectedRow, 1).toString();
         String middleName = tableModel.getValueAt(selectedRow, 2).toString();
         String rfid = tableModel.getValueAt(selectedRow, 3).toString();
-
-        // Example action: Display the selected student's full name
-//        JOptionPane.showMessageDialog(
-//            jTable1,
-//            "Logging in as: " + lastName + ", " + firstName + " " + middleName,
-//            "Login Selected",
-//            JOptionPane.INFORMATION_MESSAGE
-//        );
 
         login(rfid);
         // Add your specific action here

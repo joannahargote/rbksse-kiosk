@@ -42,7 +42,20 @@ public static Connection connect(JFrame parentFrame) { // Accept a parent JFrame
             }
         }
         return conn;
-    }    
+    } 
+
+    public static Connection connect() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connected to the database.");
+        } catch (SQLException e) {
+            String popupMessage = "Database connection failed: " + e.getMessage();
+            String popupTitle = "ERROR: NOT CONNECTED TO SERVER";
+            JOptionPane.showMessageDialog(null, popupMessage);
+        }
+        return conn;
+    }   
     
 //    public static Connection connect() { Connection conn = null; 
 //        try { 

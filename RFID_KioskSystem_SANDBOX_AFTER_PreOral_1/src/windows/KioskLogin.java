@@ -43,8 +43,15 @@ public class KioskLogin extends javax.swing.JFrame {
         
         StudentData.setInLogin(true);
         
-        startBlinking();
-        ADMIN_BTN_tempAdminLog.setVisible(false);
+        if(!StudentData.getBlinking()){
+            startBlinking();
+            StudentData.setBlinking(true);
+            System.out.println("Starts Blinking");
+        }else{
+            System.out.println("Already Blinking");
+        }
+        
+//        ADMIN_BTN_tempAdminLog.setVisible(false);
         
         StudentData.setfetchedGradeFromDb(false);
         
@@ -301,7 +308,8 @@ public class KioskLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ADMIN_BTN_tempAdminLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADMIN_BTN_tempAdminLogActionPerformed
-        AdminLog admin = new AdminLog();
+//        AdminLog admin = new AdminLog();
+        AdminLog_pan admin = new AdminLog_pan();
         admin.setVisible(true);
         setVisible(false);
         dispose();

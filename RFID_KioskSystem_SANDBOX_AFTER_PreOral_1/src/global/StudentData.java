@@ -29,6 +29,15 @@ public class StudentData {
     private static int currentSemester;
     private static String pin;
     private static boolean InLogin;
+    private static boolean blinking=false;
+    
+    public static boolean getBlinking() {
+        return blinking;
+    }
+    
+    public static void setBlinking(boolean x) {
+        blinking = x;
+    }
     
     public static boolean getInLogin() {
         return InLogin;

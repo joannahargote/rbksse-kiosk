@@ -8,12 +8,12 @@ package windows_new;
  *
  * @author USER
  */
-public class _home_cashier extends javax.swing.JPanel {
+public class _home_faculty extends javax.swing.JPanel {
 
     /**
      * Creates new form _home1
      */
-    public _home_cashier() {
+    public _home_faculty() {
         initComponents();
         
         jLabel1.setText("<html><body><p>The cashier account offers:</p><ul><li>Setting tuition</li><li>Recording student payments</li><li>Real-time kiosk record reflection</li></ul></body></html>");

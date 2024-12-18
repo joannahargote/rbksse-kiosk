@@ -7,7 +7,15 @@ package windows;
 import com.mysql.cj.util.StringUtils;
 import global.StudentData;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
+import java.util.Timer;
 
 /**
  *
@@ -15,6 +23,10 @@ import javax.swing.JOptionPane;
  */
 public class Pin extends javax.swing.JFrame {
 
+    private static final int IDLE_TIME = 30 * 1000; // 30 sec
+    private Timer idleTimer;
+    private TimerTask idleTask;
+    
     String input="";
     public Pin() {
         initComponents();
@@ -27,8 +39,61 @@ public class Pin extends javax.swing.JFrame {
             btn_confirm.setForeground(Color.LIGHT_GRAY);
         }
         
+        startIdleTimer();
+        
+//        // Add listeners to detect user activity
+//        this.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseMoved(MouseEvent e) {
+//                resetIdleTimer();
+//                System.out.println("Mouse Moved");
+//            }
+//        });
+//
+//        this.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//                resetIdleTimer();
+//                System.out.println("Key Pressed");
+//
+//            }
+//        });
+//
+//        // Reset timer on window events
+//        this.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowActivated(WindowEvent e) {
+//                resetIdleTimer();
+//                System.out.println("Window Activated");
+//            }
+//        });
+
+        
     }
 
+    private void startIdleTimer() {
+        idleTimer = new Timer();
+        idleTask = new TimerTask() {
+            @Override
+            public void run() {
+                // Action to perform after 30 minutes of inactivity
+                System.out.println("User has been idle for 30 minutes.");
+                btn_backtologinActionPerformed(null);
+                // You can add additional actions here, like logging out the user
+            }
+        };
+        idleTimer.schedule(idleTask, IDLE_TIME);
+    }
+
+    private void resetIdleTimer() {
+        if (idleTask != null) {
+            idleTask.cancel();
+        }
+        startIdleTimer();
+        System.out.println("Timer Started");
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +121,7 @@ public class Pin extends javax.swing.JFrame {
         btn_9 = new javax.swing.JButton();
         btn_confirm = new javax.swing.JButton();
         btn_backtologin = new javax.swing.JButton();
+        lbl_TIMER = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -65,9 +131,19 @@ public class Pin extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 102));
         jPanel1.setToolTipText("");
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
@@ -80,7 +156,7 @@ public class Pin extends javax.swing.JFrame {
         jlbl_showPin.setFont(new java.awt.Font("Arial", 1, 120)); // NOI18N
         jlbl_showPin.setForeground(new java.awt.Color(255, 255, 255));
         jlbl_showPin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbl_showPin.setText("-----");
+        jlbl_showPin.setText("------");
         jlbl_showPin.setToolTipText("");
         jPanel2.add(jlbl_showPin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 460, 90));
 
@@ -227,12 +303,18 @@ public class Pin extends javax.swing.JFrame {
         });
         jPanel1.add(btn_backtologin, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 900, 320, 120));
 
+        lbl_TIMER.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lbl_TIMER.setForeground(new java.awt.Color(255, 255, 0));
+        lbl_TIMER.setText("Timer");
+        jPanel1.add(lbl_TIMER, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 40, 160, 90));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_3ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "3"; 
@@ -267,6 +349,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_3ActionPerformed
 
     private void btn_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_1ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "1"; 
@@ -301,6 +384,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_1ActionPerformed
 
     private void btn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_2ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "2"; 
@@ -335,6 +419,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_2ActionPerformed
 
     private void btn_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_4ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "4"; 
@@ -369,7 +454,8 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_4ActionPerformed
 
     private void btn_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_5ActionPerformed
-       StringBuilder pinDisplay = new StringBuilder();
+        resetIdleTimer();
+        StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "5"; 
             int inputLength = input.length();
@@ -403,6 +489,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_5ActionPerformed
 
     private void btn_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_6ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "6"; 
@@ -437,6 +524,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_6ActionPerformed
 
     private void btn_7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_7ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "7"; 
@@ -471,6 +559,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_7ActionPerformed
 
     private void btn_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_0ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "0"; 
@@ -505,6 +594,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_0ActionPerformed
 
     private void btn_eraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eraseActionPerformed
+        resetIdleTimer();
         if (input != null && !input.isEmpty()) {
             // Remove the last character from the input
             input = input.substring(0, input.length() - 1);
@@ -555,6 +645,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_eraseActionPerformed
 
     private void btn_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_8ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "8"; 
@@ -589,6 +680,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_8ActionPerformed
 
     private void btn_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confirmActionPerformed
+        resetIdleTimer();
         System.out.println("PIN:"+input);
         
         if(StudentData.getPin().equals(input)){
@@ -627,6 +719,7 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_backtologinActionPerformed
 
     private void btn_9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_9ActionPerformed
+        resetIdleTimer();
         StringBuilder pinDisplay = new StringBuilder();
         if (input.length() < 6) { // Use < instead of <=
             input += "9"; 
@@ -659,6 +752,14 @@ public class Pin extends javax.swing.JFrame {
             btn_confirm.setForeground(Color.LIGHT_GRAY);
         }
     }//GEN-LAST:event_btn_9ActionPerformed
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     public int showCustomDialog(String title, String message, String btn1, String btn2){
 
@@ -726,5 +827,6 @@ public class Pin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel jlbl_showPin;
+    private javax.swing.JLabel lbl_TIMER;
     // End of variables declaration//GEN-END:variables
 }
