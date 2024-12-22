@@ -37,7 +37,7 @@ public static Connection connect(JFrame parentFrame) { // Accept a parent JFrame
                 }
 
                 // Open the login frame
-                KioskLogin loginFrame = new KioskLogin(); // Assuming you have a LoginFrame class
+                KioskLogin loginFrame = new KioskLogin(); 
                 loginFrame.setVisible(true);
             }
         }

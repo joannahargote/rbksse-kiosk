@@ -43,13 +43,13 @@ public class KioskLogin extends javax.swing.JFrame {
         
         StudentData.setInLogin(true);
         
-        if(!StudentData.getBlinking()){
+//        if(!StudentData.getBlinking()){
             startBlinking();
-            StudentData.setBlinking(true);
-            System.out.println("Starts Blinking");
-        }else{
-            System.out.println("Already Blinking");
-        }
+//            StudentData.setBlinking(true);
+//            System.out.println("Starts Blinking");
+//        }else{
+//            System.out.println("Already Blinking");
+//        }
         
 //        ADMIN_BTN_tempAdminLog.setVisible(false);
         
@@ -85,13 +85,9 @@ public class KioskLogin extends javax.swing.JFrame {
                     String popupTitle = "Logging Out"; 
                     String popupMessage = "RFID NOT RECOGNIZED.";
                     int click = showCustomDialog(popupTitle, popupMessage, "None", "OK");
-                                      
-                    
                 }
             }
         }
-
-            
     };
     
     // Add the KeyListener to the input field
@@ -118,7 +114,13 @@ public class KioskLogin extends javax.swing.JFrame {
                 }
             }
         });
-
+//
+//        if(!StudentData.getBlinking()){
+//            blinkTimer.start();
+//            StudentData.setBlinking(true);
+//            System.out.println("Starts Blinking");
+//        }
+        
         blinkTimer.start();
     }
 

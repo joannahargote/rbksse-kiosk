@@ -34,6 +34,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Locale;
+import java.util.TimerTask;
+
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 
 public class KioskProfile extends javax.swing.JFrame {
@@ -42,16 +48,19 @@ public class KioskProfile extends javax.swing.JFrame {
     private JLabel[] notificationLabels;
     JLabel[] dateLabels;
     public String[] messages;
-//    public Date[] dates;
-//    public java.util.Date[] dates;
     public Timestamp[] dates;
     public int [] pages;
     boolean balanceVisible=false;
     String viewableSemCode="11"; 
+    private static final int IDLE_TIME = 30 * 1000; // 30 sec
+    private java.util.Timer idleTimer;
+    private TimerTask idleTask;
    
     public KioskProfile() {
         initComponents();
         DatabaseConnection.connect(this);
+        
+        startIdleTimer();  // Directly start a new timer
         
         StudentData.setInLogin(false);
         
@@ -673,9 +682,19 @@ public class KioskProfile extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 1024));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 1024));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 1024));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlblCourse2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -695,6 +714,11 @@ public class KioskProfile extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 1670, 130));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbtnYear1.setBackground(new java.awt.Color(255, 204, 0));
@@ -764,6 +788,11 @@ public class KioskProfile extends javax.swing.JFrame {
         jPanel3.add(jbtnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 800, 230, 110));
 
         jimgLogoHere150x150.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SLTCFPI_logo_150x150.png"))); // NOI18N
+        jimgLogoHere150x150.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jimgLogoHere150x150MouseClicked(evt);
+            }
+        });
         jPanel3.add(jimgLogoHere150x150, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 150, 150));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 1080));
@@ -1190,6 +1219,11 @@ public class KioskProfile extends javax.swing.JFrame {
         jPanel1.add(jlblGreeting, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 650, -1));
 
         jPanel9.setBackground(new java.awt.Color(255, 204, 0));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 1670, 10));
 
@@ -1342,6 +1376,26 @@ public class KioskProfile extends javax.swing.JFrame {
             jbtnVIEWbalance.setBackground(new Color(0, 51, 102));
         }
     }//GEN-LAST:event_jbtnVIEWbalanceActionPerformed
+
+    private void jimgLogoHere150x150MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jimgLogoHere150x150MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jimgLogoHere150x150MouseClicked
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel9MouseClicked
     /**
      * @param args the command line arguments
      */
@@ -1477,5 +1531,95 @@ public class KioskProfile extends javax.swing.JFrame {
     private javax.swing.JPanel notifPanel7;
     // End of variables declaration//GEN-END:variables
 
+    
+    
+//    private void startIdleTimer() {
+//        if (idleTimer != null) {
+//            idleTimer.cancel();
+//        }
+//
+//        idleTimer = new java.util.Timer();
+//        idleTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                // Action to perform after 30 minutes of inactivity
+//                System.out.println("User has been idle for 30 minutes.");
+//
+//                KioskLogin x = new KioskLogin(); 
+//                x.setVisible(true); // Hide and dispose of this window 
+//                setVisible(false); 
+//                dispose();
+//            }
+//        };
+//        idleTimer.schedule(idleTask, IDLE_TIME);
+//        System.out.println("Timer Started");
+//    }
+//
+//    private void resetIdleTimer() {
+//        System.out.println("Timer Reset");
+//        startIdleTimer();  // Directly start a new timer
+//    }
+
+
+//    private void startIdleTimer() {
+//        if (idleTimer != null) {
+//            idleTimer.cancel(); // Cancel the current timer
+//            idleTimer.purge();  // Remove all canceled tasks from the timer's task queue
+//        }
+//
+//        idleTimer = new java.util.Timer();
+//        idleTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                // Action to perform after 30 minutes of inactivity
+//                System.out.println("User has been idle for 30 minutes.");
+//
+//                KioskLogin x = new KioskLogin(); 
+//                x.setVisible(true); // Hide and dispose of this window 
+//                setVisible(false); 
+//                dispose();
+//            }
+//        };
+//        idleTimer.schedule(idleTask, IDLE_TIME);
+//        System.out.println("Timer Started");
+//    }
+//
+//    private void resetIdleTimer() {
+//        System.out.println("Timer Reset");
+//        startIdleTimer();  // Directly start a new timer
+//    }
+
+    private Timer idleTimer1;
+    private int idleTimeInMillis = 30 * 1000; // 30 seconds
+
+    
+    private void startIdleTimer() {
+        if (idleTimer1 != null) {
+            idleTimer1.stop();
+        }
+
+        idleTimer1 = new Timer(idleTimeInMillis, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Action to perform after 30 seconds of inactivity
+                System.out.println("User has been idle for 30 seconds.");
+
+                KioskLogin x = new KioskLogin();
+                x.setVisible(true); // Hide and dispose of this window
+                setVisible(false);
+                dispose();
+            }
+        });
+
+        idleTimer1.setRepeats(false); // Ensure the timer only runs once
+        idleTimer1.start();
+        System.out.println("Timer Started");
+    }
+
+    private void resetIdleTimer() {
+        System.out.println("Timer Reset");
+        startIdleTimer(); // Directly start a new timer
+    }
+    
 
 }

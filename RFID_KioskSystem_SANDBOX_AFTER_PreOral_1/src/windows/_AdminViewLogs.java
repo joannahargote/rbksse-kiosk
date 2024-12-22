@@ -76,12 +76,12 @@ public class _AdminViewLogs extends javax.swing.JPanel {
                 
                 model.addRow(new Object[]{timestamp, rfid, lastName, firstName, middleName, report}); 
                 
-                System.out.println("Debug: timestamp = " + rs.getString("timestamp"));
-                System.out.println("Debug: rfid = " + rs.getString("rfid"));
-                System.out.println("Debug: lastName = " + rs.getString("last_name"));
-                System.out.println("Debug: firstName = " + rs.getString("first_name"));
-                System.out.println("Debug: middleName = " + rs.getString("middle_name"));
-                System.out.println("Debug: report = " + rs.getString("report"));
+//                System.out.println("Debug: timestamp = " + rs.getString("timestamp"));
+//                System.out.println("Debug: rfid = " + rs.getString("rfid"));
+//                System.out.println("Debug: lastName = " + rs.getString("last_name"));
+//                System.out.println("Debug: firstName = " + rs.getString("first_name"));
+//                System.out.println("Debug: middleName = " + rs.getString("middle_name"));
+//                System.out.println("Debug: report = " + rs.getString("report"));
 
             } 
         } catch (SQLException e) { 

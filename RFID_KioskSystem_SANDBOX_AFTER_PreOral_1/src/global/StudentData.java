@@ -30,6 +30,15 @@ public class StudentData {
     private static String pin;
     private static boolean InLogin;
     private static boolean blinking=false;
+    private static int idleCounter;
+    
+    public static int getidleCounter() {
+        return idleCounter;
+    }
+    
+    public static void setidleCounter(int x) {
+        idleCounter = x;
+    }
     
     public static boolean getBlinking() {
         return blinking;

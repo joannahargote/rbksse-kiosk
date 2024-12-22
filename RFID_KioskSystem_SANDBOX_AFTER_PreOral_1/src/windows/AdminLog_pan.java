@@ -29,9 +29,7 @@ public class AdminLog_pan extends javax.swing.JFrame {
     public AdminLog_pan() {
         initComponents();
 //        connect();
-        changeablePanel.removeAll();
-        _AdminViewLogs _logs = new _AdminViewLogs();
-        changeablePanel.add(_logs);
+        jbtn_4ActionPerformed(null);
         
         StudentData.setInLogin(false);
         
@@ -104,6 +102,7 @@ public class AdminLog_pan extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jbtn_3 = new javax.swing.JButton();
         changeablePanel = new javax.swing.JPanel();
+        jbtn_4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 1024));
@@ -173,7 +172,7 @@ public class AdminLog_pan extends javax.swing.JFrame {
                 jbtn_1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jbtn_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 690, 350, 120));
+        jPanel1.add(jbtn_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 680, 350, 80));
 
         jbtn_2.setBackground(new java.awt.Color(0, 51, 102));
         jbtn_2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
@@ -184,7 +183,7 @@ public class AdminLog_pan extends javax.swing.JFrame {
                 jbtn_2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jbtn_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 350, 120));
+        jPanel1.add(jbtn_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 580, 350, 80));
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1920, 120));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -224,11 +223,22 @@ public class AdminLog_pan extends javax.swing.JFrame {
                 jbtn_3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jbtn_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, 350, 120));
+        jPanel1.add(jbtn_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 350, 80));
 
         changeablePanel.setBackground(new java.awt.Color(255, 255, 255));
         changeablePanel.setLayout(new java.awt.BorderLayout());
         jPanel1.add(changeablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 1420, 800));
+
+        jbtn_4.setBackground(new java.awt.Color(0, 51, 102));
+        jbtn_4.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jbtn_4.setForeground(new java.awt.Color(255, 255, 255));
+        jbtn_4.setText("KIOSK LOGS");
+        jbtn_4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbtn_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 350, 80));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
@@ -240,6 +250,8 @@ public class AdminLog_pan extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRequest1ActionPerformed
 
     private void jbtn_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_1ActionPerformed
+        enableButtons();
+        jbtn_1.setEnabled(false);
         String popupTitle = "Exiting"; 
         String popupMessage = "You are about to close the kiosk application.";
         int click = showCustomDialog(popupTitle, popupMessage, "OK", "Cancel");
@@ -248,9 +260,12 @@ public class AdminLog_pan extends javax.swing.JFrame {
         }  else if (click == 2) { 
         System.out.println("Button 2 was clicked");
         }
+        enableButtons();
     }//GEN-LAST:event_jbtn_1ActionPerformed
 
     private void jbtn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_2ActionPerformed
+        enableButtons();
+        jbtn_2.setEnabled(false);
         String popupTitle = "Logging Out"; 
         String popupMessage = "You are about to log out.";
         int click = showCustomDialog(popupTitle, popupMessage, "OK", "Cancel");
@@ -264,6 +279,7 @@ public class AdminLog_pan extends javax.swing.JFrame {
         }  else if (click == 2) { 
         System.out.println("Button 2 was clicked");
         }
+        enableButtons();
     }//GEN-LAST:event_jbtn_2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -271,11 +287,30 @@ public class AdminLog_pan extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtn_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_3ActionPerformed
+        enableButtons();
+        jbtn_3.setEnabled(false);
         changeablePanel.removeAll();
         _AdminLogAs _logAs = new _AdminLogAs(this);
         changeablePanel.add(_logAs);
+        changeablePanel.revalidate(); changeablePanel.repaint();
     }//GEN-LAST:event_jbtn_3ActionPerformed
 
+    private void jbtn_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_4ActionPerformed
+        enableButtons();
+        jbtn_4.setEnabled(false);
+        changeablePanel.removeAll();
+        _AdminViewLogs _logs = new _AdminViewLogs();
+        changeablePanel.add(_logs);
+        changeablePanel.revalidate(); changeablePanel.repaint();
+    }//GEN-LAST:event_jbtn_4ActionPerformed
+
+    private void enableButtons(){
+        jbtn_1.setEnabled(true);
+        jbtn_2.setEnabled(true);
+        jbtn_3.setEnabled(true);
+        jbtn_4.setEnabled(true);
+    }
+    
     int notificationPage = 1, totalNotifPage;
         /**
      * @param args the command line arguments
@@ -388,6 +423,7 @@ public class AdminLog_pan extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_1;
     private javax.swing.JButton jbtn_2;
     private javax.swing.JButton jbtn_3;
+    private javax.swing.JButton jbtn_4;
     private javax.swing.JLabel jlblCourse1;
     private javax.swing.JLabel jlblCourse2;
     private javax.swing.JLabel jlblGreeting;

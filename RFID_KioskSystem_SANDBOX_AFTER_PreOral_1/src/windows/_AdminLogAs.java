@@ -152,7 +152,7 @@ public class _AdminLogAs extends javax.swing.JPanel {
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Academic Year");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 100, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 100, 20));
 
         jCombo_AY.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCombo_AY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2024-2025" }));
@@ -161,11 +161,11 @@ public class _AdminLogAs extends javax.swing.JPanel {
                 jCombo_AYActionPerformed(evt);
             }
         });
-        add(jCombo_AY, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 190, -1));
+        add(jCombo_AY, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 190, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Program");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 60, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 60, 20));
 
         jCombo_program.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCombo_program.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "BEED", "BTVTED" }));
@@ -174,15 +174,15 @@ public class _AdminLogAs extends javax.swing.JPanel {
                 jCombo_programActionPerformed(evt);
             }
         });
-        add(jCombo_program, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 190, -1));
+        add(jCombo_program, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 190, -1));
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Year Level");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 60, 20));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 60, 20));
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Block");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 60, 20));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 60, 20));
 
         jCombo_year.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCombo_year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "1", "2", "3", "4" }));
@@ -191,7 +191,7 @@ public class _AdminLogAs extends javax.swing.JPanel {
                 jCombo_yearActionPerformed(evt);
             }
         });
-        add(jCombo_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 80, -1));
+        add(jCombo_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 80, -1));
 
         jCombo_block.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jCombo_block.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "A", "B", "C", "D", "E" }));
@@ -200,7 +200,7 @@ public class _AdminLogAs extends javax.swing.JPanel {
                 jCombo_blockActionPerformed(evt);
             }
         });
-        add(jCombo_block, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 80, -1));
+        add(jCombo_block, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 80, -1));
 
         jButton_VIEW.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton_VIEW.setText("VIEW STUDENTS");
@@ -209,7 +209,7 @@ public class _AdminLogAs extends javax.swing.JPanel {
                 jButton_VIEWActionPerformed(evt);
             }
         });
-        add(jButton_VIEW, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 310, 70));
+        add(jButton_VIEW, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 310, 70));
 
         jButton_loginSelected.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton_loginSelected.setText("LOG IN");
@@ -218,7 +218,7 @@ public class _AdminLogAs extends javax.swing.JPanel {
                 jButton_loginSelectedActionPerformed(evt);
             }
         });
-        add(jButton_loginSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 590, 270, 60));
+        add(jButton_loginSelected, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 650, 270, 60));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -246,7 +246,7 @@ public class _AdminLogAs extends javax.swing.JPanel {
         jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 880, 500));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 880, 500));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCombo_AYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCombo_AYActionPerformed

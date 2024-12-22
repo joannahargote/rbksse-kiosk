@@ -30,6 +30,7 @@ public class Pin extends javax.swing.JFrame {
     String input="";
     public Pin() {
         initComponents();
+        
         StudentData.setInLogin(false);
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -40,35 +41,7 @@ public class Pin extends javax.swing.JFrame {
         }
         
         startIdleTimer();
-        
-//        // Add listeners to detect user activity
-//        this.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseMoved(MouseEvent e) {
-//                resetIdleTimer();
-//                System.out.println("Mouse Moved");
-//            }
-//        });
-//
-//        this.addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//                resetIdleTimer();
-//                System.out.println("Key Pressed");
-//
-//            }
-//        });
-//
-//        // Reset timer on window events
-//        this.addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowActivated(WindowEvent e) {
-//                resetIdleTimer();
-//                System.out.println("Window Activated");
-//            }
-//        });
-
-        
+       
     }
 
     private void startIdleTimer() {
@@ -625,23 +598,6 @@ public class Pin extends javax.swing.JFrame {
             btn_confirm.setEnabled(false);
             btn_confirm.setForeground(Color.LIGHT_GRAY);
         }
-
-
-
-
-
-//        
-//        // Check if input ends with \r\n and chop accordingly
-//        String result;
-//        if (input.endsWith("\r\n")) {
-//            result = input.substring(0, input.length() - 2);
-//        } else {
-//            result = input.substring(0, input.length() - 1);
-//        }
-//
-//        // Display the result
-//        JOptionPane.showMessageDialog(this, "Result after chopping: " + result, "Result", JOptionPane.INFORMATION_MESSAGE);
-//        input=result;
     }//GEN-LAST:event_btn_eraseActionPerformed
 
     private void btn_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_8ActionPerformed
@@ -712,8 +668,8 @@ public class Pin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_confirmActionPerformed
 
     private void btn_backtologinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backtologinActionPerformed
-        KioskLogin profileWindow = new KioskLogin(); 
-        profileWindow.setVisible(true); // Hide and dispose of this window 
+        KioskLogin x = new KioskLogin(); 
+        x.setVisible(true); // Hide and dispose of this window 
         setVisible(false); 
         dispose();
     }//GEN-LAST:event_btn_backtologinActionPerformed
