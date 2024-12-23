@@ -3,10 +3,10 @@ package windows;
 import global.DatabaseConnection;
 import global.StudentData;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.sql.Connection;
-import java.sql.DriverManager;
+//import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,12 +14,12 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
-import javax.swing.JDialog;
+//import javax.swing.JDialog;
 import javax.swing.JLabel;
-import java.awt.*;
-import javax.swing.BorderFactory;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+//import java.awt.*;
+//import javax.swing.BorderFactory;
+//import javax.swing.SwingUtilities;
+//import javax.swing.UIManager;
 
 public class KioskViewGrade extends javax.swing.JFrame {
   
@@ -459,6 +459,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     
     //ASKS THE CONFIRMATION AND SETS CHANGES TO DB
     private void requestReview(int btnReviewNumber){
+        resetIdleTimer();
         btnReviewNumber-=1;
         
         JButton[] requestButtons = { jbtnRequest1, jbtnRequest2, jbtnRequest3, jbtnRequest4, jbtnRequest5,jbtnRequest6,
@@ -679,9 +680,19 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 1024));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 1024));
         jPanel1.setPreferredSize(new java.awt.Dimension(1280, 1024));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbtnProfile.setBackground(new java.awt.Color(255, 204, 0));
@@ -762,6 +773,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 380, -1));
 
         jPanel9.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlblNameHeader14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -817,6 +833,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
 
         jpanelGrades1.setBackground(new java.awt.Color(255, 255, 255));
         jpanelGrades1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -873,6 +894,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel4.add(jpanelGrades1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, 1630, 55));
 
         jpanelGrades2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -928,6 +954,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel4.add(jpanelGrades2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 134, 1630, 55));
 
         jpanelGrades4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades4.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -984,6 +1015,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
 
         jpanelGrades3.setBackground(new java.awt.Color(255, 255, 255));
         jpanelGrades3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades3.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1039,6 +1075,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel4.add(jpanelGrades3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 1630, 55));
 
         jpanelGrades6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades6.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1094,6 +1135,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel4.add(jpanelGrades6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 358, 1630, 55));
 
         jpanelGrades8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades8.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1150,6 +1196,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
 
         jpanelGrades5.setBackground(new java.awt.Color(255, 255, 255));
         jpanelGrades5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades5.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1206,6 +1257,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
 
         jpanelGrades7.setBackground(new java.awt.Color(255, 255, 255));
         jpanelGrades7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades7.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1262,6 +1318,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
 
         jpanelGrades11.setBackground(new java.awt.Color(255, 255, 255));
         jpanelGrades11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades11.add(jPanel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1317,6 +1378,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel4.add(jpanelGrades11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 638, 1630, 55));
 
         jpanelGrades10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades10.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1372,6 +1438,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel4.add(jpanelGrades10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 582, 1630, 55));
 
         jpanelGrades12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades12.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1428,6 +1499,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
 
         jpanelGrades9.setBackground(new java.awt.Color(255, 255, 255));
         jpanelGrades9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades9.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1484,6 +1560,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
 
         jpanelGrades13.setBackground(new java.awt.Color(255, 255, 255));
         jpanelGrades13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 153), 1, true));
+        jpanelGrades13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpanelGradesALLMouseClicked(evt);
+            }
+        });
         jpanelGrades13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpanelGrades13.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 930, 50));
 
@@ -1582,6 +1663,11 @@ public class KioskViewGrade extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 1670, 50));
 
         jPanel31.setBackground(new java.awt.Color(255, 204, 0));
+        jPanel31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel31MouseClicked(evt);
+            }
+        });
         jPanel31.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 1020, 1680, 60));
 
@@ -1679,6 +1765,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRequest13ActionPerformed
 
     private void jbtnYear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnYear1ActionPerformed
+        resetIdleTimer();
         System.out.println("[YEAR 1] Viewable Sem Code: "+viewableSemCode);
         
         jbtnYear1.setBackground(clickedBtnColor);
@@ -1709,32 +1796,27 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnYear1ActionPerformed
 
     private void jbtnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogoutActionPerformed
-//        frame = new JFrame("Logging Out");
-//        if (JOptionPane.showConfirmDialog(frame, "You are about to log out.", "Log out", JOptionPane.OK_CANCEL_OPTION)!=JOptionPane.OK_CANCEL_OPTION){
-//            KioskLogin profileWindow = new KioskLogin();
-//            profileWindow.setVisible(true);
-//
-//            // Hide and dispose of this window
-//            setVisible(false);
-//            dispose();
-//        }
 
         String popupTitle = "Logging Out"; 
         String popupMessage = "You are about to log out.";
         int click = showCustomDialog(popupTitle, popupMessage, "OK", "Cancel");
         if (click == 1) { 
+            FrameManager.closeAllFrames();
             System.out.println("Button 1 was clicked");
             // Perform the logout actions 
-            KioskLogin profileWindow = new KioskLogin(); 
-            profileWindow.setVisible(true); // Hide and dispose of this window 
+            KioskLogin login = new KioskLogin(); 
+            login.setVisible(true); // Hide and dispose of this window 
             setVisible(false); 
             dispose();
+            FrameManager.addFrame(login);
+            StudentData.setidleCounter(0);
         }  else if (click == 2) { 
         System.out.println("Button 2 was clicked");
         }
     }//GEN-LAST:event_jbtnLogoutActionPerformed
 
     private void jbtnYear4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnYear4ActionPerformed
+        resetIdleTimer();
         System.out.println("[YEAR 4] Viewable Sem Code: "+viewableSemCode);
 
 //        enableButtons();
@@ -1768,6 +1850,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnYear4ActionPerformed
 
     private void jbtnYear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnYear3ActionPerformed
+        resetIdleTimer();
         System.out.println("[YEAR 3] Viewable Sem Code: "+viewableSemCode);
 
 //        
@@ -1802,6 +1885,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnYear3ActionPerformed
 
     private void jbtnYear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnYear2ActionPerformed
+        resetIdleTimer();
         System.out.println("[YEAR 2] Viewable Sem Code: "+viewableSemCode);
 
 //        enableButtons();
@@ -1834,13 +1918,20 @@ public class KioskViewGrade extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbtnYear2ActionPerformed
 
+    private void resetIdleTimer() {
+        StudentData.setidleCounter(0);
+    }
+    
     private void jbtnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProfileActionPerformed
+        FrameManager.closeAllFrames();
         KioskProfile profileWindow = new KioskProfile();
         profileWindow.setVisible(true);
 
         // Hide and dispose of this window
         setVisible(false);
         dispose();
+        FrameManager.addFrame(profileWindow);
+        StudentData.setidleCounter(0);
     }//GEN-LAST:event_jbtnProfileActionPerformed
 
     private void jbtnRequest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRequest1ActionPerformed
@@ -1850,6 +1941,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRequest1ActionPerformed
 
     private void jbtnSeePrerequisites1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites1ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[0] +
@@ -1861,6 +1953,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites1ActionPerformed
 
     private void jbtnSeePrerequisites2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites2ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[1] +
@@ -1871,6 +1964,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites2ActionPerformed
 
     private void jbtnSeePrerequisites3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites3ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[2] +
@@ -1882,6 +1976,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites3ActionPerformed
 
     private void jbtnSeePrerequisites4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites4ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[3] +
@@ -1892,6 +1987,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites4ActionPerformed
 
     private void jbtnSeePrerequisites5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites5ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[4] +
@@ -1902,6 +1998,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites5ActionPerformed
 
     private void jbtnSeePrerequisites6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites6ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[5] +
@@ -1912,6 +2009,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites6ActionPerformed
 
     private void jbtnSeePrerequisites7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites7ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[6] +
@@ -1922,6 +2020,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites7ActionPerformed
 
     private void jbtnSeePrerequisites8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites8ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[7] +
@@ -1932,6 +2031,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites8ActionPerformed
 
     private void jbtnSeePrerequisites9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites9ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[8] +
@@ -1942,6 +2042,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites9ActionPerformed
 
     private void jbtnSeePrerequisites10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites10ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[9] +
@@ -1952,6 +2053,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites10ActionPerformed
 
     private void jbtnSeePrerequisites11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites11ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[10] +
@@ -1962,6 +2064,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites11ActionPerformed
 
     private void jbtnSeePrerequisites12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites12ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[11] +
@@ -1972,6 +2075,7 @@ public class KioskViewGrade extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSeePrerequisites12ActionPerformed
 
     private void jbtnSeePrerequisites13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSeePrerequisites13ActionPerformed
+        resetIdleTimer();
         String popupTitle = "Pre-requisite Subjects"; 
         String popupMessage = 
                 "<b>To enroll in " + currentSubjects[12] +
@@ -1980,6 +2084,26 @@ public class KioskViewGrade extends javax.swing.JFrame {
                 ;
         showCustomDialog(popupTitle, popupMessage, "None", "OK");
     }//GEN-LAST:event_jbtnSeePrerequisites13ActionPerformed
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+       resetIdleTimer();
+    }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jPanel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel31MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel31MouseClicked
+
+    private void jpanelGradesALLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpanelGradesALLMouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jpanelGradesALLMouseClicked
     /**
      * @param args the command line arguments
      */

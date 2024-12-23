@@ -32,8 +32,11 @@ public class _AdminLogAs extends javax.swing.JPanel {
     
     public _AdminLogAs(AdminLog_pan parent) {
         initComponents();
-        this.parent = parent;
         
+        StudentData.setidleCounter(0);
+        
+        this.parent = parent;
+                
         setupTable();
         
         // Initialize table model with column names
@@ -114,9 +117,11 @@ public class _AdminLogAs extends javax.swing.JPanel {
         } catch (SQLException e) {
             System.out.println("Error retrieving student data: " + e.getMessage());
         }
-                        
+        
+        FrameManager.closeAllFrames();
         Pin pinWindow = new Pin();
         pinWindow.setVisible(true);  
+        FrameManager.addFrame(pinWindow);
 
     }
    

@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException; 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import windows.FrameManager;
 import windows.KioskLogin;
 
 
@@ -21,7 +22,7 @@ public class DatabaseConnection {
     
 public static Connection connect(JFrame parentFrame) { // Accept a parent JFrame as a parameter
         Connection conn = null;
-        if (StudentData.getidleCounter()<30) {
+        if (StudentData.getidleCounter()<30) { //30 seconds
             try {
                 StudentData.setidleCounter(StudentData.getidleCounter()+1);
                 conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -44,17 +45,22 @@ public static Connection connect(JFrame parentFrame) { // Accept a parent JFrame
                 }
             }//catch      
         }//if <30
-        else{
+        else{ //lampas na 30 seconds
             StudentData.setidleCounter(0);
-            // Close the current window (parentFrame)
-                    if (parentFrame != null) {
-                        parentFrame.setVisible(false);
-                        parentFrame.dispose();
-                    }
-
+//            para di maga double yung KioskLogin
+            System.out.println("Already in KioskLogin");
+            if (!StudentData.getInLogin()){
+                // Close the current window (parentFrame)
+                if (parentFrame != null) {
+                    parentFrame.setVisible(false);
+                    parentFrame.dispose();
+                }
+                    FrameManager.closeAllFrames(); // Close all existing frames before opening a new one
                     // Open the login frame
                     KioskLogin loginFrame = new KioskLogin(); 
                     loginFrame.setVisible(true);
+                    FrameManager.addFrame(loginFrame); // Add the new frame to the manager
+            }
         }
         return conn;
     } 

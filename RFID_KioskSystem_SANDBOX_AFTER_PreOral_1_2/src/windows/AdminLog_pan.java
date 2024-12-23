@@ -2,32 +2,36 @@ package windows;
 
 import java.time.LocalTime;
 import global.StudentData;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+//import java.awt.Color;
+//import java.awt.Component;
+//import java.awt.Font;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.sql.*;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
+//import javax.swing.JOptionPane;
+//import javax.swing.JTable;
+//import javax.swing.table.DefaultTableCellRenderer;
+//import javax.swing.table.DefaultTableModel;
 
 
 public class AdminLog_pan extends javax.swing.JFrame {
 
-    _Notifications notifications = new _Notifications();
-    private JLabel[] notificationLabels;
-    JLabel[] dateLabels;
+//    _Notifications notifications = new _Notifications();
+//    private JLabel[] notificationLabels;
+//    JLabel[] dateLabels;
     public String[] messages;
     public Date[] dates;
     public int [] pages;
    
     public AdminLog_pan() {
         initComponents();
+        
+        FrameManager.addFrame(this);
+        StudentData.setidleCounter(0);
+        
 //        connect();
         jbtn_4ActionPerformed(null);
         
@@ -270,12 +274,15 @@ public class AdminLog_pan extends javax.swing.JFrame {
         String popupMessage = "You are about to log out.";
         int click = showCustomDialog(popupTitle, popupMessage, "OK", "Cancel");
         if (click == 1) { 
+            FrameManager.closeAllFrames();
             KioskLogin login = new KioskLogin();
             login.setVisible(true);  
         
             // Hide and dispose of this window
             setVisible(false);
             dispose();
+            FrameManager.addFrame(login);
+            StudentData.setidleCounter(0);
         }  else if (click == 2) { 
         System.out.println("Button 2 was clicked");
         }

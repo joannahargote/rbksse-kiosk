@@ -45,10 +45,9 @@ public class KioskProfile extends javax.swing.JFrame {
     public KioskProfile() {
         initComponents();
         StudentData.setidleCounter(0);
+        
         DatabaseConnection.connect(this);
-        
-//        startIdleTimer();  // Directly start a new timer
-        
+                
         StudentData.setInLogin(false);
         
         String query = "SELECT * FROM system_status";
@@ -790,6 +789,11 @@ public class KioskProfile extends javax.swing.JFrame {
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 380, -1));
 
         jPanelNOTIFICATIONS.setBackground(new java.awt.Color(255, 204, 0));
+        jPanelNOTIFICATIONS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanelNOTIFICATIONSMouseClicked(evt);
+            }
+        });
         jPanelNOTIFICATIONS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(0, 51, 102));
@@ -961,6 +965,11 @@ public class KioskProfile extends javax.swing.JFrame {
 
         jPanel4.add(jPanelNOTIFICATIONS, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 590, 780));
 
+        jPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel12MouseClicked(evt);
+            }
+        });
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel13.setBackground(new java.awt.Color(0, 51, 102));
@@ -1047,6 +1056,11 @@ public class KioskProfile extends javax.swing.JFrame {
 
         jPanel4.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, 420));
 
+        jPanel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel14MouseClicked(evt);
+            }
+        });
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel15.setBackground(new java.awt.Color(0, 51, 102));
@@ -1108,6 +1122,11 @@ public class KioskProfile extends javax.swing.JFrame {
 
         jPanel4.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 960, 330));
 
+        jPanel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel16MouseClicked(evt);
+            }
+        });
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel17.setBackground(new java.awt.Color(0, 51, 102));
@@ -1194,7 +1213,7 @@ public class KioskProfile extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 1610, 860));
 
-        jlblNameHeader.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jlblNameHeader.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jlblNameHeader.setText("STUDENT NAME");
         jlblNameHeader.setToolTipText("");
         jPanel1.add(jlblNameHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 1040, 60));
@@ -1234,12 +1253,15 @@ public class KioskProfile extends javax.swing.JFrame {
         String popupMessage = "You are about to log out.";
         int click = showCustomDialog(popupTitle, popupMessage, "OK", "Cancel");
         if (click == 1) { 
+            FrameManager.closeAllFrames();
             System.out.println("Button 1 was clicked");
             // Perform the logout actions 
-            KioskLogin profileWindow = new KioskLogin(); 
-            profileWindow.setVisible(true); // Hide and dispose of this window 
+            KioskLogin login = new KioskLogin(); 
+            login.setVisible(true); // Hide and dispose of this window 
             setVisible(false); 
             dispose();
+            FrameManager.addFrame(login);
+            StudentData.setidleCounter(0);
         }  else if (click == 2) { 
         System.out.println("Button 2 was clicked");
         }
@@ -1249,12 +1271,14 @@ public class KioskProfile extends javax.swing.JFrame {
         StudentData.btnCarryOver="1st YEAR";
         
         frame = new JFrame("1st Year");
-        KioskViewGrade profileWindow = new KioskViewGrade();
-        profileWindow.setVisible(true);
-                
+        KioskViewGrade viewGrade = new KioskViewGrade();
+        viewGrade.setVisible(true);
+        FrameManager.closeAllFrames();        
         // Hide and dispose of this window
         setVisible(false);
         dispose();
+        FrameManager.addFrame(viewGrade);
+        StudentData.setidleCounter(0);
     }//GEN-LAST:event_jbtnYear1ActionPerformed
 
     private void jbtnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProfileActionPerformed
@@ -1263,47 +1287,58 @@ public class KioskProfile extends javax.swing.JFrame {
 
     private void jbtnYear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnYear2ActionPerformed
         StudentData.btnCarryOver="2nd YEAR";
-        
+        FrameManager.closeAllFrames();
         frame = new JFrame("2nd Year");
-        KioskViewGrade profileWindow = new KioskViewGrade();
-        profileWindow.setVisible(true);
+        KioskViewGrade viewGrade = new KioskViewGrade();
+        viewGrade.setVisible(true);
                 
         // Hide and dispose of this window
         setVisible(false);
         dispose();
+        FrameManager.addFrame(viewGrade);
+        StudentData.setidleCounter(0);
     }//GEN-LAST:event_jbtnYear2ActionPerformed
 
     private void jbtnYear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnYear3ActionPerformed
         StudentData.btnCarryOver="3rd YEAR";
-        
+        FrameManager.closeAllFrames();
         frame = new JFrame("3rd Year");
-        KioskViewGrade profileWindow = new KioskViewGrade();
-        profileWindow.setVisible(true);
+        KioskViewGrade viewGrade = new KioskViewGrade();
+        viewGrade.setVisible(true);
                 
         // Hide and dispose of this window
         setVisible(false);
         dispose();
+        FrameManager.addFrame(viewGrade);
+        StudentData.setidleCounter(0);
     }//GEN-LAST:event_jbtnYear3ActionPerformed
 
     private void jbtnYear4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnYear4ActionPerformed
         StudentData.btnCarryOver="4th YEAR";
-        
+        FrameManager.closeAllFrames();
         frame = new JFrame("4th Year");
-        KioskViewGrade profileWindow = new KioskViewGrade();
-        profileWindow.setVisible(true);
+        KioskViewGrade viewGrade = new KioskViewGrade();
+        viewGrade.setVisible(true);
                 
         // Hide and dispose of this window
         setVisible(false);
         dispose();
+        FrameManager.addFrame(viewGrade);
+        StudentData.setidleCounter(0);
     }//GEN-LAST:event_jbtnYear4ActionPerformed
 
     private void jbtnRequest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRequest1ActionPerformed
-        // TODO add your handling code here:
+        resetIdleTimer();
     }//GEN-LAST:event_jbtnRequest1ActionPerformed
 
+    private void resetIdleTimer() {
+        StudentData.setidleCounter(0);
+    }
+    
     int notificationPage = 1, totalNotifPage;
     
     private void jbtnNEXTnotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNEXTnotifActionPerformed
+        resetIdleTimer();
         jbtnNEXTnotif.setEnabled(true);
         jbtnPREVnotif.setEnabled(true);
         notificationPage++;
@@ -1321,6 +1356,7 @@ public class KioskProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnNEXTnotifActionPerformed
 
     private void jbtnPREVnotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPREVnotifActionPerformed
+        resetIdleTimer();
         jbtnNEXTnotif.setEnabled(true);
         jbtnPREVnotif.setEnabled(true);
         notificationPage--;
@@ -1346,6 +1382,7 @@ public class KioskProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnPREVnotif2ActionPerformed
 
     private void jbtnVIEWbalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnVIEWbalanceActionPerformed
+        resetIdleTimer();
         if(!balanceVisible){ //if it's hidden
             jlblBalance.setVisible(true);
             jlblBalanceTitle.setVisible(true);
@@ -1382,6 +1419,22 @@ public class KioskProfile extends javax.swing.JFrame {
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         resetIdleTimer();
     }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jPanel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel14MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel14MouseClicked
+
+    private void jPanel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel16MouseClicked
+
+    private void jPanel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel12MouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanel12MouseClicked
+
+    private void jPanelNOTIFICATIONSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelNOTIFICATIONSMouseClicked
+        resetIdleTimer();
+    }//GEN-LAST:event_jPanelNOTIFICATIONSMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -1518,10 +1571,6 @@ public class KioskProfile extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    private void resetIdleTimer() {
-        System.out.println("Timer Reset");
-        StudentData.setidleCounter(0);
-    }
     
 
 }

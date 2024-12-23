@@ -14,6 +14,7 @@ public class FrameManager {
 
     public static void addFrame(JFrame frame) {
         openFrames.add(frame);
+        System.out.println(openFrames);
     }
 
     public static void closeAllFrames() {
@@ -21,6 +22,8 @@ public class FrameManager {
             frame.dispose();
         }
         openFrames.clear();
+        System.out.println(openFrames);
+
     }
 
     public static void removeFrame(JFrame frame) {

@@ -40,30 +40,26 @@ public class Pin extends javax.swing.JFrame {
             btn_confirm.setForeground(Color.LIGHT_GRAY);
         }
         
-        startIdleTimer();
+//        startIdleTimer();
        
     }
 
-    private void startIdleTimer() {
-        idleTimer = new Timer();
-        idleTask = new TimerTask() {
-            @Override
-            public void run() {
-                // Action to perform after 30 minutes of inactivity
-                System.out.println("User has been idle for 30 minutes.");
-                btn_backtologinActionPerformed(null);
-                // You can add additional actions here, like logging out the user
-            }
-        };
-        idleTimer.schedule(idleTask, IDLE_TIME);
-    }
+//    private void startIdleTimer() {
+//        idleTimer = new Timer();
+//        idleTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                // Action to perform after 30 minutes of inactivity
+//                System.out.println("User has been idle for 30 minutes.");
+//                btn_backtologinActionPerformed(null);
+//                // You can add additional actions here, like logging out the user
+//            }
+//        };
+//        idleTimer.schedule(idleTask, IDLE_TIME);
+//    }
 
     private void resetIdleTimer() {
-        if (idleTask != null) {
-            idleTask.cancel();
-        }
-        startIdleTimer();
-        System.out.println("Timer Started");
+        StudentData.setidleCounter(0);
     }
 
     
@@ -94,7 +90,6 @@ public class Pin extends javax.swing.JFrame {
         btn_9 = new javax.swing.JButton();
         btn_confirm = new javax.swing.JButton();
         btn_backtologin = new javax.swing.JButton();
-        lbl_TIMER = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -276,11 +271,6 @@ public class Pin extends javax.swing.JFrame {
         });
         jPanel1.add(btn_backtologin, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 900, 320, 120));
 
-        lbl_TIMER.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lbl_TIMER.setForeground(new java.awt.Color(255, 255, 0));
-        lbl_TIMER.setText("Timer");
-        jPanel1.add(lbl_TIMER, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 40, 160, 90));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         pack();
@@ -343,9 +333,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -378,9 +368,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -413,9 +403,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -448,9 +438,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -483,9 +473,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -518,9 +508,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -553,9 +543,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -622,9 +612,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
        if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -640,13 +630,19 @@ public class Pin extends javax.swing.JFrame {
         System.out.println("PIN:"+input);
         
         if(StudentData.getPin().equals(input)){
-                    
+                    FrameManager.closeAllFrames();
                     if(StudentData.getFirstName().contentEquals("ADMIN")){
-                        AdminLog admin = new AdminLog();
+                        AdminLog_pan admin = new AdminLog_pan();
                         admin.setVisible(true);
+                        FrameManager.addFrame(admin);
+                        StudentData.setidleCounter(0);
+        
                     }else{
                         KioskProfile profileWindow = new KioskProfile();
                         profileWindow.setVisible(true);  
+                        FrameManager.addFrame(profileWindow);
+                        StudentData.setidleCounter(0);
+        
                     }
                     
                     // Hide and dispose of this window
@@ -696,9 +692,9 @@ public class Pin extends javax.swing.JFrame {
             jlbl_showPin.setText(pinDisplay.toString());
         }
         else{
-            System.out.println("reached pin length limit");
+//            System.out.println("reached pin length limit");
         }
-        System.out.println("PinDosplay: "+pinDisplay);
+//        System.out.println("PinDosplay: "+pinDisplay);
         
         if(input.length()==6){
             btn_confirm.setEnabled(true);
@@ -783,6 +779,5 @@ public class Pin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel jlbl_showPin;
-    private javax.swing.JLabel lbl_TIMER;
     // End of variables declaration//GEN-END:variables
 }

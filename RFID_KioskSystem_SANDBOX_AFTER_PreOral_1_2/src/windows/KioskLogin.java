@@ -39,7 +39,11 @@ public class KioskLogin extends javax.swing.JFrame {
 
     
     public KioskLogin() {
+        
         initComponents();
+        
+        FrameManager.addFrame(this); // Add the new frame to the manager
+        StudentData.setidleCounter(0);
         
         StudentData.setInLogin(true);
         
@@ -72,15 +76,15 @@ public class KioskLogin extends javax.swing.JFrame {
                     
                     FrameManager.closeAllFrames(); // Close all existing frames before opening a new one
 
-                    Pin pinWindow = new Pin();
-                    pinWindow.setVisible(true);  
+                    Pin frame = new Pin();
+                    frame.setVisible(true);  
                      
                     // Hide and dispose of this window
                     setVisible(false);
                     dispose();
                     
                     FrameManager.addFrame(frame); // Add the new frame to the manager
-                    
+                    StudentData.setidleCounter(0);
                     // Remove KeyListener after the scan
                     rfidInputField.removeKeyListener(rfidKeyListener);
                 }
@@ -331,11 +335,13 @@ public class KioskLogin extends javax.swing.JFrame {
 
     private void ADMIN_BTN_tempAdminLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADMIN_BTN_tempAdminLogActionPerformed
 //        AdminLog admin = new AdminLog();
+        FrameManager.closeAllFrames(); // Close all existing frames before opening a new one
         AdminLog_pan admin = new AdminLog_pan();
         admin.setVisible(true);
         setVisible(false);
         dispose();
-
+        FrameManager.addFrame(admin); // Add the new frame to the manager
+        StudentData.setidleCounter(0);
     }//GEN-LAST:event_ADMIN_BTN_tempAdminLogActionPerformed
     /**
      * @param args the command line arguments
