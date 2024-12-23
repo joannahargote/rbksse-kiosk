@@ -6,12 +6,12 @@ import global.StudentData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.DriverManager;
+//import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 
 //for RFID listener
 import java.awt.event.KeyAdapter;
@@ -70,13 +70,17 @@ public class KioskLogin extends javax.swing.JFrame {
                 if(rfidExist){
                     rfidLogTransaction(rfidData,true);
                     
+                    FrameManager.closeAllFrames(); // Close all existing frames before opening a new one
+
                     Pin pinWindow = new Pin();
                     pinWindow.setVisible(true);  
                      
                     // Hide and dispose of this window
                     setVisible(false);
                     dispose();
-
+                    
+                    FrameManager.addFrame(frame); // Add the new frame to the manager
+                    
                     // Remove KeyListener after the scan
                     rfidInputField.removeKeyListener(rfidKeyListener);
                 }
